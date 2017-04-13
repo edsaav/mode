@@ -16,16 +16,16 @@
 // ---------------- Do not edit below this point ---------------- //
 
 var customTooltip = {
-  var title_match = function(o){
+  title_match: function(o){
     return o["id"] == tooltip_title
   },
 
-  var add_row = function(o, l, c){
+  add_row: function(o, l, c){
     new_row = "<tr class = 'new_row'><td></td><td>" + l + ": </td><td style='text-align:right'><strong>" + o[c] + "</strong></td></tr>"
     tooltip_body.append(new_row)
   },
 
-  var update_rows = function(){
+  update_rows: function(){
     old_rows = $("html").find(".nvtooltip").find("tr")
     $(old_rows).css("display","none")
     tooltip_rows.forEach(function(r){
@@ -33,13 +33,13 @@ var customTooltip = {
     })
   },
 
-  var update_title = function(o, tf){
+  update_title: function(o, tf){
     title = $("html").find(".nvtooltip").find("tbody").prevObject.find("h3")[0]
     $(title).css("display","none")
     $("<h3>" + o[tf] + "</h3>").insertAfter(title)
   },
 
-  var update_tooltip = function(chart, query, title_field, tooltip_rows){
+  update_tooltip: function(chart, query, title_field, tooltip_rows){
     data = alamode.getDataFromQuery(query)
 
     setInterval(function(){
