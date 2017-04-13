@@ -29,7 +29,7 @@ var customTooltip = {
     old_rows = $("html").find(".nvtooltip").find("tr")
     $(old_rows).css("display","none")
     tooltip_rows.forEach(function(r){
-      add_row(data_row, r[0], r[1])
+      customTooltip.add_row(data_row, r[0], r[1])
     })
   },
 
@@ -46,12 +46,12 @@ var customTooltip = {
       $("#" + chart).find("path").mousemove(function(){
         tooltip_body = $("html").find(".nvtooltip").find("tbody")
         tooltip_title = tooltip_body.prevObject.find("h3")[0].innerText
-        data_row = data.filter(title_match)[0]
+        data_row = data.filter(customTooltip.title_match)[0]
         if (tooltip_body.find(".new_row").length > 0){
           return false
         } else {
-          update_rows()
-          update_title(data_row, title_field)
+          customTooltip.update_rows()
+          customTooltip.update_title(data_row, title_field)
         }
       })
     }, 100)
