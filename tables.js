@@ -1,5 +1,4 @@
 function generateTable(args){
-  console.log('Inside generateTable function')
   tableData = args.tableData;
   exportData = args.exportData || args.tableData;
   enableExport = args.enableExport || false;
@@ -8,7 +7,6 @@ function generateTable(args){
   for (i = 0; i < args.cols.length; i++) {
     cols.push({ 'data': args.cols[i] })
   };
-  console.log(cols)
   title = args.title;
   tableId = '#' + args.tableId || '#customTable';
   
@@ -24,13 +22,10 @@ function generateTable(args){
   });
 
   $(`${tableId}-header`).ready(function() {
-    console.log(`${tableId}-header is ready`)
     $(`${tableId}-header`).prepend(`<div class='chart-header' style='float:left;margin: 12px 0 10px 0;'>${title}</div>`);
     if (enableExport) {
-      console.log('Export option is on')
       $(`${tableId}-header`).prepend(`<button id='${tableId.replace('#','')}-export' class='exportButton'>Export</button>`);
       $(`${tableId}-export`).click(function(){
-        console.log('Click!')
         downloadCSV({ filename: `${filename}.csv`, data: exportData });
       });
     }   
