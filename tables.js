@@ -77,3 +77,16 @@ function downloadCSV(args) {
   link.setAttribute('download', filename);
   link.click();
 }
+
+function generateExportButton(args){
+  exportData = args.exportData;
+  filename = args.filename || 'data';
+  whereId = '#' + args.whereId;
+
+  $(whereId).ready(function() {
+    $(whereId).append(`<button id='${whereId.replace('#','')}-export' class='exportButton'>Export</button>`);
+    $(`${whereId}-export`).click(function(){
+      downloadCSV({ filename: `${filename}.csv`, data: exportData });
+    });
+  });
+}
