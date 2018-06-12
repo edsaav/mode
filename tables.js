@@ -78,7 +78,7 @@ function generateExportButton(args){
   whereId = '#' + args.whereId;
 
   $(whereId).ready(function() {
-    btn = `<button class='expoertButton'><a href=${encodeURI('data:text/csv;charset=utf-8,' + arrayToCSV({ data: exportData }))} download=${filename + '.csv'}>Export</a></button>`;
+    btn = `<button class='exportButton'><a href=${encodeURI('data:text/csv;charset=utf-8,' + arrayToCSV({ data: exportData }))} download=${filename + '.csv'}>Export</a></button>`;
     $(whereId).append(btn);
   });
 }
