@@ -22,11 +22,26 @@ function generateTable(args){
   });
 
   $(`${tableId}-header`).ready(function() {
+    console.log(`${tableId}-header is ready`)
     $(`${tableId}-header`).prepend(`<div class='chart-header' style='float:left;margin: 12px 0 10px 0;'>${title}</div>`);
     if (enableExport) {
       $(`${tableId}-header`).prepend(`<button id='${tableId.replace('#','')}-export' class='exportButton'>Export</button>`);
       $(`${tableId}-export`).click(function(){
-        downloadCSV({ filename: `${filename}.csv`, data: exportData });
+        // downloadCSV({ filename: `${filename}.csv`, data: exportData });
+        var data, filename, link;
+        var csv = arrayToCSV({
+          data: exportData
+        });
+        if (csv == null) return;
+        filename = `${filename}.csv` || 'export.csv';
+        if (!csv.match(/^data:text\/csv/i)) {
+          csv = 'data:text/csv;charset=utf-8,' + csv;
+        }
+        data = encodeURI(csv);
+        link = document.createElement('a');
+        link.setAttribute('href', data);
+        link.setAttribute('download', filename);
+        link.click();
       });
     }   
   });
@@ -81,7 +96,21 @@ function generateExportButton(args){
   $(whereId).ready(function() {
     $(whereId).append(`<button id='${whereId.replace('#','')}-export' class='exportButton'>Export</button>`);
     $(`${whereId}-export`).click(function(){
-      downloadCSV({ filename: `${filename}.csv`, data: exportData });
+      // downloadCSV({ filename: `${filename}.csv`, data: exportData });
+      var data, filename, link;
+      var csv = arrayToCSV({
+        data: exportData
+      });
+      if (csv == null) return;
+      filename = `${filename}.csv` || 'export.csv';
+      if (!csv.match(/^data:text\/csv/i)) {
+        csv = 'data:text/csv;charset=utf-8,' + csv;
+      }
+      data = encodeURI(csv);
+      link = document.createElement('a');
+      link.setAttribute('href', data);
+      link.setAttribute('download', filename);
+      link.click();
     });
   });
 }
