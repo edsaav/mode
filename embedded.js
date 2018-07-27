@@ -55,11 +55,11 @@ function replaceText(args) {
   }
 
   for (let i = 0; i < headersToAppend.length; i++) {
-    $(`div.in-place-edit-text:contains(${headersToAppend[i][0]})`).replaceWith(headersToAppend[i][1]);
+    $(`div.in-place-edit-text:contains(${headersToAppend[i][0]})`).append(headersToAppend[i][1]);
   }
 
   for (let i = 0; i < customAppends.length; i++) {
-    $(customAppends[i][0]).replaceWith(customAppends[i][1]);
+    $(customAppends[i][0]).append(customAppends[i][1]);
   }
 
   $("span.fb-content:contains('{{ctrl.content}}')").text(emptyBigNumber);
