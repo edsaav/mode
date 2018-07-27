@@ -51,15 +51,21 @@ function replaceText(args) {
   let customAppends = args.customAppends || [];
 
   for (let i = 0; i < textSpansToReplace.length; i++) {
-    $(`text tspan:contains(${textSpansToReplace[i][0]})`).replaceWith(textSpansToReplace[i][1]);
+    try {
+      $(`text tspan:contains(${textSpansToReplace[i][0]})`).replaceWith(textSpansToReplace[i][1]); 
+    }
   }
 
   for (let i = 0; i < headersToAppend.length; i++) {
-    $(`div.in-place-edit-text:contains(${headersToAppend[i][0]})`).append(headersToAppend[i][1]);
+    try {
+      $(`div.in-place-edit-text:contains(${headersToAppend[i][0]})`).append(headersToAppend[i][1]);
+    }
   }
 
   for (let i = 0; i < customAppends.length; i++) {
-    $(customAppends[i][0]).append(customAppends[i][1]);
+    try {
+      $(customAppends[i][0]).append(customAppends[i][1]);
+    }
   }
 
   $("span.fb-content:contains('{{ctrl.content}}')").text(emptyBigNumber);
