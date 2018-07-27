@@ -53,19 +53,19 @@ function replaceText(args) {
   for (let i = 0; i < textSpansToReplace.length; i++) {
     try {
       $(`text tspan:contains(${textSpansToReplace[i][0]})`).replaceWith(textSpansToReplace[i][1]); 
-    }
+    } catch() { console.log(`${textSpansToReplace[i][0]} not found`); }
   }
 
   for (let i = 0; i < headersToAppend.length; i++) {
     try {
       $(`div.in-place-edit-text:contains(${headersToAppend[i][0]})`).append(headersToAppend[i][1]);
-    }
+    } catch() { console.log(`${headersToAppend[i][0]} not found`); }
   }
 
   for (let i = 0; i < customAppends.length; i++) {
     try {
       $(customAppends[i][0]).append(customAppends[i][1]);
-    }
+    } catch() { console.log(`${customAppends[i][0]} not found`); }
   }
 
   $("span.fb-content:contains('{{ctrl.content}}')").text(emptyBigNumber);
