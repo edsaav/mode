@@ -46,9 +46,9 @@ function replaceText(args) {
   let emptyBigNumber = args.emptyBigNumber || '--';
   let chartRenderError = args.chartRenderError || 'Sorry, no data for the selected time period';
   let tableRenderError = args.tableRenderError || 'Sorry, no data for the selected time period';
-  let textSpansToReplace = args.textSpansToReplace;
-  let headersToAppend = args.headersToAppend;
-  let customAppends = args.customAppends;
+  let textSpansToReplace = args.textSpansToReplace || [];
+  let headersToAppend = args.headersToAppend || [];
+  let customAppends = args.customAppends || [];
 
   for (let i = 0; i < textSpansToReplace.length; i++) {
     $(`text tspan:contains(${textSpansToReplace[i][0]})`).replaceWith(textSpansToReplace[i][1]);
