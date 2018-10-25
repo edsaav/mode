@@ -1,5 +1,5 @@
 function setupReport(tableArgs, replaceTextArgs) {
-//   generateTable(tableArgs);
+  generateTable(tableArgs);
 
   $(document).ready(function() {
     replaceText(replaceTextArgs);
